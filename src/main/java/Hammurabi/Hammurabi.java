@@ -12,8 +12,12 @@ public class Hammurabi {
         new Hammurabi().playGame();
     }
     void playGame(){
+    }
+    public int askHowMuchGrainToFeedPeople(int bushels){
+        String s = "How much grain is needed this year?";
+        return bushels;
+    }
 
-        }
 }
 
 
