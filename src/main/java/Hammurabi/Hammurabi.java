@@ -14,13 +14,13 @@ public class Hammurabi {
     }
 
     void playGame(){
+        public int askHowManyAcresToBuy(int price, int bushels){
 
+        }
+        public int askHowManyAcresToSell(int acresOwned){
+
+        }
     }
 
-    int askHowManyAcresToBuy(int price, int bushels){
 
-    }
-    int askHowManyAcresToSell(int acresOwned){
-
-    }
 }
