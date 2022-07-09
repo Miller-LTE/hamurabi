@@ -1,18 +1,18 @@
-package Hammurabi;
-
-import java.util.Random;
-import java.util.Scanner;
-
-public class lloydMethod {
-
-    Random rand = new Random();
-    Scanner scanner = new Scanner(System.in);
-
-
-
-    //        Counter
-    int people = 100;
-    int bushels = 2800; //2800 bushels of grain in storage
+//package Hammurabi;
+//
+//import java.util.Random;
+//import java.util.Scanner;
+//
+//public class lloydMethod {
+//
+//    Random rand = new Random();
+//    Scanner scanner = new Scanner(System.in);
+//
+//
+//
+//    //        Counter
+//    int people = 100;
+//    int bushels = 2800; //2800 bushels of grain in storage
 //    int acresOwned =  1000;// acres of land
 //    int price = 20;  //Land value is 19 bushels/acre
 //    int years = 1;
@@ -30,30 +30,30 @@ public class lloydMethod {
 //        while (years <= 10){
 //
 //    }
-    private int askHowManyAcresToBuy(int price, int bushels){
-        System.out.print("How many acres of land would you like to buy? ");
-        bushels = scanner.nextInt();
-        return price;
-    }
-    private int askHowManyAcresToSell(int acres){
-        System.out.print("How many acres of land would you like to sell? ");
-        acres = scanner.nextInt();
-        return acres;
-    }
-    private int askHowMuchGrainToFeedPeople(int bushels){
-        System.out.print("How much grain to feed people? ");
-        bushels = scanner.nextInt();
-        return bushels;
-    }
-    private int askHowManyAcresToPlant(int acres, int population, int bushels){
-        System.out.print("How much acres of seed do you want to plant? ");
-//        int canPlant = population * acres;
-        acres = scanner.nextInt();
-        if (acres > (population * 10) && bushels * acres >= acresOwned){
-            System.out.print("Not enough people to plant the fields... Try again.");
-        }
-
-        else return acres;
-        return acres;
-    }
-}
+//    private int askHowManyAcresToBuy(int price, int bushels){
+//        System.out.print("How many acres of land would you like to buy? ");
+//        bushels = scanner.nextInt();
+//        return price;
+//    }
+//    private int askHowManyAcresToSell(int acres){
+//        System.out.print("How many acres of land would you like to sell? ");
+//        acres = scanner.nextInt();
+//        return acres;
+//    }
+//    private int askHowMuchGrainToFeedPeople(int bushels){
+//        System.out.print("How much grain to feed people? ");
+//        bushels = scanner.nextInt();
+//        return bushels;
+//    }
+//    private int askHowManyAcresToPlant(int acres, int population, int bushels){
+//        System.out.print("How much acres of seed do you want to plant? ");
+////        int canPlant = population * acres;
+//        acres = scanner.nextInt();
+//        if (acres > (population * 10) && bushels * acres >= acresOwned){
+//            System.out.print("Not enough people to plant the fields... Try again.");
+//        }
+//
+//        else return acres;
+//        return acres;
+//    }
+//}
