@@ -41,7 +41,21 @@ public class Hammurabi {
 
 
     public static void main(String[] args){
-        new Hammurabi().playGame();
+//        new Hammurabi().playGame();
+//        Random rand = new Random();
+//        Scanner scanner = new Scanner(System.in);
+//
+//        //        Counter
+//        int population = 100;
+//        int immigrants = 5;
+//        int starved = 0;
+//        int grainEatenByRats = 200;
+//        int bushels = 2800; //2800 bushels of grain in storage
+//        int acresOwned =  1000;// acres of land
+//        int price = rand.nextInt(26 - 17 + 1) + 17;  //Land value is 19 bushels/acre
+//        int years = 1;
+//        int harvest = rand.nextInt(6 - 1 + 1) + 1;
+
     }
 
     void playGame(){
@@ -79,10 +93,22 @@ public class Hammurabi {
 
     private int askHowManyAcresToSell(int acres){
         System.out.print("How many acres of land would you like to sell? ");
-        int input = scanner.nextInt();
+        int input = scanner.nextInt(); //Input number how much acres to sell
+        if (bushels<0 || acres < -input){
+            System.out.println("Does not work!"); //If you input # that is less than 0, it shall not work
+        } else {
+            bushels+=price*input;
+        }
+        acresOwned-=input;
         System.out.println(bushels);
 
-        return acres;
+        return input;
+//        System.out.print("How many acres of land would you like to sell? ");
+//        int input = scanner.nextInt(); //Input number how much acres to sell
+//        input = acres;
+//        bushels += price * input;
+//        System.out.println(bushels);
+//        return input;
     }
 
     public int plagueDeaths(int population){
