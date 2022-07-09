@@ -1,4 +1,4 @@
-<<<<<<< HEAD:HammurabiTest.java
+
 //package hammurabi;
 //
 //import static org.junit.Assert.*;
@@ -124,7 +124,7 @@
 //
 //}
 //
-=======
+
 import static org.junit.Assert.*;
 
 import org.junit.Before;
@@ -248,4 +248,3 @@ public class HammurabiTest {
 
 }
 
->>>>>>> main:src/test/java/HammurabiTest.java

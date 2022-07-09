@@ -1,18 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-package hamurabi.src.main.java.Hammurabi;
-=======
+
 package Hamurabi;
 import com.sun.tools.jdeprscan.scan.Scan;
->>>>>>> main
-=======
-package Hammurabi;
->>>>>>> main
 
 import java.util.Random;
 import java.util.Scanner;
 
-<<<<<<< HEAD
+
 public class Hammurabi {
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
@@ -28,7 +21,6 @@ public class Hammurabi {
 
     //other methods go here
 
-=======
 
 public class Hammurabi {
     Random rand = new Random();
@@ -43,12 +35,5 @@ public class Hammurabi {
 
 
 }
-
-
-
-<<<<<<< HEAD
-
->>>>>>> main
 }
-=======
->>>>>>> main
+
