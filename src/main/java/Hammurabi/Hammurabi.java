@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package hamurabi.src.main.java.Hammurabi;
 =======
 package Hamurabi;
 import com.sun.tools.jdeprscan.scan.Scan;
+>>>>>>> main
+=======
+package Hammurabi;
 >>>>>>> main
 
 import java.util.Random;
@@ -26,25 +30,25 @@ public class Hammurabi {
 
 =======
 
-public class Hamurabi {
+public class Hammurabi {
     Random rand = new Random();
     Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args){
-        new Hamurabi().playGame();
+        new Hammurabi().playGame();
     }
 
     void playGame(){
-
-
-        public int askHowManyAcresToBuy(int price, int bushels){
-
-        }
-        public int askHowManyAcresToSell(int acresOwned){
-
-        }
     }
 
 
+}
+
+
+
+<<<<<<< HEAD
+
 >>>>>>> main
 }
+=======
+>>>>>>> main
