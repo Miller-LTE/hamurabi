@@ -1,24 +1,8 @@
-
 package Hammurabi;
 
 import java.util.Random;
 import java.util.Scanner;
 
-
-//public class Hammurabi {
-//    Random rand = new Random();  // this is an instance variable
-//    Scanner scanner = new Scanner(System.in);
-
-//    public static void main(String[] args) { // required in every Java program
-//        new Hammurabi().playGame();
-//    }
-//
-//    void playGame() {
-//        // declare local variables here: grain, population, etc.
-//        // statements go after the declations
-//    }
-
-//other methods go here
 
 
 public class Hammurabi {
@@ -36,7 +20,7 @@ public class Hammurabi {
     private int years;
     private int harvest;
 
-    public Hammurabi(){
+    public Hammurabi() {
         this.population = 100;
         this.immigrants = 5;
         this.starved = 0;
@@ -49,14 +33,14 @@ public class Hammurabi {
     }
 
 
-    public static void main(String[] args){
-
+    public static void main(String[] args) {
         new Hammurabi().playGame();
         Random rand = new Random();
         Scanner scanner = new Scanner(System.in);
+
     }
 
-    void playGame(){
+    void playGame() {
 
         this.population = 100;
         this.immigrants = 5;
@@ -68,25 +52,34 @@ public class Hammurabi {
         this.harvest = rand.nextInt(6 - 1 + 1) + 1;
         this.years = 1;
 
-        while (years <= 10){
+        while (years <= 10) {
             printSummary();
             years++;
             int temp = 0;
+//            askHowManyAcresToBuy(price, bushels);
+//            askHowManyAcresToSell(acresOwned);
 
-            System.out.println("Would you like to buy or sell acres? Press 1 to buy. Press 2 to sell.\n");
-            int input = scanner.nextInt();
 
-            if (input==1){
-                askHowManyAcresToBuy(price, bushels);
-            } else if (input==2) {
-                askHowManyAcresToSell(acresOwned);
+            boolean isIncorrectInput = true;
+            while (isIncorrectInput) {
+                System.out.println("Would you like to buy or sell acres? Press 1 to buy. Press 2 to sell.\n");
+                int input = askForInput();
+                if (input == 1) {
+                    askHowManyAcresToBuy(price, bushels);
+                    isIncorrectInput = false;
+                } else if (input == 2) {
+                    askHowManyAcresToSell(acresOwned);
+                    isIncorrectInput = false;
+                } else {
+                    System.out.println("Pick 1 or 2.");
+                }
             }
 
             System.out.println("How much grain do you want to feed your people?");
             askHowMuchGrainToFeedPeople(bushels);
 
             System.out.println("How many acres of land do you want to plant?");
-            askHowManyAcresToPlant(acresOwned,population,bushels);
+            askHowManyAcresToPlant(acresOwned, population, bushels);
         }
     }
 
@@ -102,75 +95,74 @@ public class Hammurabi {
                 "Land is currently worth " + price + " bushels per acre.\n");
     }
 
-    private void finalSummary(){
 
-    }
-
-    private int askHowManyAcresToBuy(int price, int bushels){
+    private int askHowManyAcresToBuy(int price, int bushels) {
         System.out.print("How many acres of land would you like to buy? ");
-        int input = scanner.nextInt();
-        if(input<0){
-            System.out.println("Does not work!");
-        } else {
-            this.bushels-=this.price*input;
+        int input = askForInput();
+        if (enoughBushels(input) == true) {
+            this.bushels -= this.price * input;
+            this.acresOwned += input;
         }
-        this.acresOwned+= input;
         System.out.println(this.bushels);
         return input;
     }
 
-    private int askHowManyAcresToSell(int acres){
+    private int askHowManyAcresToSell(int acres) {
+
         System.out.print("How many acres of land would you like to sell? ");
-        int input = scanner.nextInt(); //Input number how much acres to sell
-        if (input>0 || acres < -input){
+        int input = askForInput(); //Input number how much acres to sell
+        if (input <= 0 || this.acresOwned <= input) {
             System.out.println("Does not work!"); //If you input # that is less than 0, it shall not work
         } else {
-            this.bushels+=this.price*(-input);
+            this.bushels += this.price * input;
         }
-        this.acresOwned-=input;
+        this.acresOwned -= input;
         System.out.println(this.bushels);
-
-
         return input;
-//        System.out.print("How many acres of land would you like to sell? ");
-//        int input = scanner.nextInt(); //Input number how much acres to sell
-//        input = acres;
-//        bushels += price * input;
-//        System.out.println(bushels);
-//        return input;
+
     }
 
-    private int askHowMuchGrainToFeedPeople(int bushels){
-        int input =scanner.nextInt();
-        if (input<0){
-            System.out.println("Feed your people!");
-        } else {
-            this.bushels-=input;
-        }
+    private int askHowMuchGrainToFeedPeople(int bushels) {
+        int input = askForInput();
+        this.bushels -= input;
         System.out.println(this.bushels);
         return input;
     }
 
-    private int askHowManyAcresToPlant(int acresOwned, int population, int bushels){
-        int input = scanner.nextInt();
-        if(input<0){
+    private int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+        int input = askForInput();
+        if (input <= 0) {
             System.out.println("Try again");
-        } else if (input>10*this.population) {
-            System.out.println("You only have " +this.population+ " to work.");
-        } else{
-            this.bushels+=this.harvest*this.acresOwned;
-            this.bushels-=input;
+        } else if (input > 10 * this.population) {
+            System.out.println("You only have " + this.population + " to work.");
+        } else {
+            this.bushels += this.harvest * this.acresOwned;
+            this.bushels -= input;
         }
+        System.out.println(this.bushels);
         return input;
     }
 
-
-
-    public int plagueDeaths(int population){
-        int death = 0;
-
-        return death;
+    private int askForInput() {
+        int input;
+        do {
+            System.out.println("Enter a positive number.");
+            while (!scanner.hasNextInt()) {
+                System.out.println("Not a number.");
+                scanner.next();
+            }
+            input = scanner.nextInt();
+        } while (input <= 0);
+        return input;
     }
 
-
+    private boolean enoughBushels(int input) {
+        boolean isNotEnoughBushels = true;
+        while (input > this.bushels) {
+            System.out.println("Not enough bushels! Go lower!");
+            isNotEnoughBushels = false;
+            scanner.next();
+        }
+        return isNotEnoughBushels;
+    }
 }
