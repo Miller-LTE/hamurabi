@@ -49,29 +49,11 @@ public class Hammurabi {
     }
 
 
-
-
-
-
-
     public static void main(String[] args){
 
         new Hammurabi().playGame();
         Random rand = new Random();
         Scanner scanner = new Scanner(System.in);
-
-//
-//        //        Counter
-//        int population = 100;
-//        int immigrants = 5;
-//        int starved = 0;
-//        int grainEatenByRats = 200;
-//        int bushels = 2800; //2800 bushels of grain in storage
-//        int acresOwned =  1000;// acres of land
-//        int price = rand.nextInt(26 - 17 + 1) + 17;  //Land value is 19 bushels/acre
-//        int years = 1;
-//        int harvest = rand.nextInt(6 - 1 + 1) + 1;
-
     }
 
     void playGame(){
@@ -87,30 +69,19 @@ public class Hammurabi {
         this.years = 1;
 
         while (years <= 10){
-            System.out.println("O great Harambe!\n" +
-                    "You are in year " + years + " of your ten year rule.\n" +
-                    "In the previous year " + starved + " people starved to death.\n" +
-                    "In the previous year " + immigrants + " people entered the kingdom.\n" +
-                    "The population is now " + population + ".\n" +
-                    "We harvested " + bushels + " bushels at " + harvest + " bushels per acre.\n" +
-                    "Rats destroyed " + grainEatenByRats + " bushels, leaving " + bushels + " bushels in storage.\n" +
-                    "The city owns " + acresOwned + " acres of land.\n" +
-                    "Land is currently worth " + price + " bushels per acre.\n");
+            printSummary();
             years++;
             int temp = 0;
-//            askHowManyAcresToBuy(price, bushels);
-//            askHowManyAcresToSell(acresOwned);
 
             System.out.println("Would you like to buy or sell acres? Press 1 to buy. Press 2 to sell.\n");
             int input = scanner.nextInt();
+
             if (input==1){
                 askHowManyAcresToBuy(price, bushels);
             } else if (input==2) {
                 askHowManyAcresToSell(acresOwned);
             }
-//            else {
-//                System.out.println("Pick 1 or 2.");
-//            }
+
             System.out.println("How much grain do you want to feed your people?");
             askHowMuchGrainToFeedPeople(bushels);
 
@@ -119,6 +90,21 @@ public class Hammurabi {
         }
     }
 
+    private void printSummary(){
+        System.out.println("O great Harambe!\n" +
+                "You are in year " + years + " of your ten year rule.\n" +
+                "In the previous year " + starved + " people starved to death.\n" +
+                "In the previous year " + immigrants + " people entered the kingdom.\n" +
+                "The population is now " + population + ".\n" +
+                "We harvested " + bushels + " bushels at " + harvest + " bushels per acre.\n" +
+                "Rats destroyed " + grainEatenByRats + " bushels, leaving " + bushels + " bushels in storage.\n" +
+                "The city owns " + acresOwned + " acres of land.\n" +
+                "Land is currently worth " + price + " bushels per acre.\n");
+    }
+
+    private void finalSummary(){
+
+    }
 
     private int askHowManyAcresToBuy(int price, int bushels){
         System.out.print("How many acres of land would you like to buy? ");
