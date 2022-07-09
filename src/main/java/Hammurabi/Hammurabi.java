@@ -74,11 +74,12 @@ public class Hammurabi {
                 }
             }
 
-            System.out.println("How much grain do you want to feed your people?");
+            //System.out.println("How much grain do you want to feed your people?");
             askHowMuchGrainToFeedPeople(bushels);
 
-            System.out.println("How many acres of land do you want to plant?");
+            //System.out.println("How many acres of land do you want to plant?");
             askHowManyAcresToPlant(acresOwned, population, bushels);
+
         }
     }
 
@@ -119,38 +120,69 @@ public class Hammurabi {
 
     private int askHowManyAcresToSell(int acres) {
 
-        System.out.print("How many acres of land would you like to sell? ");
-        int input = askForInput(); //Input number how much acres to sell
-        if (input <= 0 || this.acresOwned <= input) {
-            System.out.println("Does not work!"); //If you input # that is less than 0, it shall not work
-        } else {
-            this.bushels += this.price * input;
+        //System.out.print("How many acres of land would you like to sell? ");
+        String message = "How many acres of land would you like to sell?";
+        int input = getNumber(message);
+        //int input = askForInput(); //Input number how much acres to sell
+        while (input > acresOwned) {
+            String newMessage = "You do not have enough acres to sell";
+            System.out.println(newMessage);
+            input = getNumber(message);
         }
+        this.bushels += this.price * input;
         this.acresOwned -= input;
         System.out.println(this.bushels);
         return input;
-
+//        if (input <= 0 || this.acresOwned <= input) {
+//            System.out.println("Does not work!"); //If you input # that is less than 0, it shall not work
+//        } else {
+//            this.bushels += this.price * input;
+//        }
+//        this.acresOwned -= input;
+//        System.out.println(this.bushels);
+//        return input;
     }
 
     private int askHowMuchGrainToFeedPeople(int bushels) {
-        int input = askForInput();
+        String message = "How much grain do you want to feed your people?";
+        int input = getNumber(message);
+        while (input > population * 20) {
+            String newMessage = "You do not have enough bushels to feed everyone";
+            System.out.println(newMessage);
+            input = getNumber(message);
+        }
         this.bushels -= input;
         System.out.println(this.bushels);
         return input;
+//        int input = askForInput();
+//        this.bushels -= input;
+//        System.out.println(this.bushels);
+//        return input;
     }
 
     private int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
-        int input = askForInput();
-        if (input <= 0) {
-            System.out.println("Try again");
-        } else if (input > 10 * this.population) {
-            System.out.println("You only have " + this.population + " to work.");
-        } else {
-            this.bushels += this.harvest * this.acresOwned;
-            this.bushels -= input;
+        String message = "How many acres of land do you want to plant?";
+        int input = getNumber(message);
+        while (input <= 0 || input > 10 * population) { //each person can only plant 10 acres
+            String newMessage = "Try again";
+            System.out.println(newMessage);
+            input = getNumber(message);
         }
+        this.bushels += this.harvest * this.acresOwned;
+        this.bushels -= input;
         System.out.println(this.bushels);
         return input;
+//        int input = askForInput();
+//        if (input <= 0) {
+//            System.out.println("Try again");
+//        } else if (input > 10 * this.population) {
+//            System.out.println("You only have " + this.population + " to work.");
+//        } else {
+//            this.bushels += this.harvest * this.acresOwned;
+//            this.bushels -= input;
+//        }
+//        System.out.println(this.bushels);
+//        return input;
     }
 
     private int askForInput() {
@@ -193,7 +225,7 @@ public class Hammurabi {
             System.out.print(message);
             try {
                 int input = scanner.nextInt();
-                if (input > 0) {
+                if (input >= 0) {
                     return input;
                 }
                 throw new IllegalArgumentException("number is negative");
