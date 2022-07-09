@@ -204,4 +204,51 @@ public class Hammurabi {
             }
         }
     }
+
+    private int plagueDeaths(int population){
+//        boolean value = rand.nextInt((100 / 15)) == 0;
+        if (new Random().nextDouble() <= 0.15){
+            population = population / 2; //Plague occurs and half the population dies
+        }
+        return population; //Plague does not happen; population stays the same
+    }
+    private int starvationDeaths(int population, int bushelsFedToPeople){
+        //Each person needs 20 bushels of grain to survive. If you feed them more than this,
+        // they are happy, but the grain is still gone.
+        // You don't get any benefit from having happy subjects.
+        // Return the number of deaths from starvation (possibly zero).
+        int maxFeed = bushels / 20;
+        while (population > askHowMuchGrainToFeedPeople(maxFeed)){
+            population = population - ((bushels * 20) * (askHowMuchGrainToFeedPeople(bushelsFedToPeople)));
+        }
+        return population;
+    }
+    private boolean uprising(int population, int howManyPeopleStarved){
+        if (population == population / 0.45){
+            System.out.println("The population has started an uprising");
+            }
+        return true;
+    }
+    private int immigrants(int population, int acresOwned, int grainInStorage){
+//        Nobody will come to the city if people are starving (so don't call this method).
+//        If everyone is well fed,
+//        compute how many people come to the city as:
+//        `(20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1`.
+            population = ((20 * acresOwned) + (bushels)) / (100 * population) + 1;
+        return population;
+    }
+
+    private int grainEatenByRats(int bushels){
+//        > There is a 40% chance that you will have a rat infestation.
+//        When this happens, rats will eat somewhere between 10% and 30% of your grain.
+//        Return the amount of grain eaten by rats (possibly zero).
+        int percBushelsEaten = rand.nextInt( (100 + 1));
+        if (new Random().nextDouble() <= 0.40) {
+            System.out.print("You got a rat infestation");
+            if(percBushelsEaten > 10 && percBushelsEaten < 30){
+                return bushels - percBushelsEaten;
+            }
+        }
+        return bushels;
+    }
 }
