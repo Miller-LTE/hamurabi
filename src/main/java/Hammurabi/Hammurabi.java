@@ -11,6 +11,7 @@ public class Hammurabi {
     public static void main(String[] args){
         new Hammurabi().playGame();
     }
+
     void playGame(){
     }
 
