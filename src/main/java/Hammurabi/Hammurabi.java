@@ -1,5 +1,8 @@
 package Hammurabi;
 
+import jdk.internal.util.xml.impl.Input;
+
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -55,10 +58,6 @@ public class Hammurabi {
         while (years <= 10) {
             printSummary();
             years++;
-            int temp = 0;
-//            askHowManyAcresToBuy(price, bushels);
-//            askHowManyAcresToSell(acresOwned);
-
 
             boolean isIncorrectInput = true;
             while (isIncorrectInput) {
@@ -83,7 +82,7 @@ public class Hammurabi {
         }
     }
 
-    private void printSummary(){
+    private void printSummary() {
         System.out.println("O great Harambe!\n" +
                 "You are in year " + years + " of your ten year rule.\n" +
                 "In the previous year " + starved + " people starved to death.\n" +
@@ -97,13 +96,24 @@ public class Hammurabi {
 
 
     private int askHowManyAcresToBuy(int price, int bushels) {
-        System.out.print("How many acres of land would you like to buy? ");
-        int input = askForInput();
-        if (enoughBushels(input) == true) {
-            this.bushels -= this.price * input;
-            this.acresOwned += input;
+//        System.out.print("How many acres of land would you like to buy? ");
+//        int input = askForInput();
+//        if (enoughBushels(input) == true) {
+//            this.bushels -= this.price * input;
+//            this.acresOwned += input;
+//        }
+//        System.out.println(this.bushels);
+
+        String message = "How many acres of land would you like to buy?";
+        int maxAcres = bushels / price;
+        int input = getNumber(message);
+        while (input > maxAcres) {
+            String newMessage = "Not enough bushals. You only have " + bushels + " bushels.";
+            System.out.println(newMessage);
+            input = getNumber(message);
+
         }
-        System.out.println(this.bushels);
+
         return input;
     }
 
@@ -156,13 +166,42 @@ public class Hammurabi {
         return input;
     }
 
-    private boolean enoughBushels(int input) {
-        boolean isNotEnoughBushels = true;
-        while (input > this.bushels) {
-            System.out.println("Not enough bushels! Go lower!");
-            isNotEnoughBushels = false;
-            scanner.next();
+//    private boolean enoughBushels(int input) {
+//        boolean isNotEnoughBushels = true;
+//        while (input > this.bushels) {
+//            System.out.println("Not enough bushels! Go lower!");
+//            isNotEnoughBushels = false;
+//            scanner.next();
+//        }
+//        return isNotEnoughBushels;
+//    }
+
+//    int getNumber(String message) {
+//        while (true) {
+//            System.out.print(message);
+//            try {
+//                return scanner.nextInt();
+//            }
+//            catch (InputMismatchException e) {
+//                System.out.println("\"" + scanner.next() + "\" isn't a number!");
+//            }
+//        }
+//    }
+
+    int getNumber(String message) {
+        while (true) {
+            System.out.print(message);
+            try {
+                int input = scanner.nextInt();
+                if (input > 0) {
+                    return input;
+                }
+                throw new IllegalArgumentException("number is negative");
+            } catch (IllegalArgumentException e) {
+                System.out.println("\"" + scanner.next() + "\" isn't a positive number!");
+            } catch (InputMismatchException e) {
+                System.out.println("\"" + scanner.next() + "\" isn't a number!");
+            }
         }
-        return isNotEnoughBushels;
     }
 }
