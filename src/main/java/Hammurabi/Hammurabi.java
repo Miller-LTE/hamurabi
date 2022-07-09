@@ -55,9 +55,11 @@ public class Hammurabi {
 
 
     public static void main(String[] args){
+
         new Hammurabi().playGame();
         Random rand = new Random();
         Scanner scanner = new Scanner(System.in);
+
 //
 //        //        Counter
 //        int population = 100;
@@ -141,6 +143,7 @@ public class Hammurabi {
         }
         this.acresOwned-=input;
         System.out.println(this.bushels);
+
 
         return input;
 //        System.out.print("How many acres of land would you like to sell? ");
