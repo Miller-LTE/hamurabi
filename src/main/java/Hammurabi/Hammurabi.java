@@ -104,7 +104,7 @@ public class Hammurabi {
                 "In the previous year " + starved + " people starved to death.\n" +
                 "In the previous year " + immigrants + " people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
-                "We harvested " + bushels + " bushels at " + harvest + " bushels per acre.\n" +
+                "Harvesting was done at " + harvest + " bushels per acre.\n" +
                 "Rats destroyed " +  grainsDestroyedByRats + " bushels, leaving " + bushels + " bushels in storage.\n" +
                 "The city owns " + acresOwned + " acres of land.\n" +
                 "Land is currently worth " + price + " bushels per acre.\n");
@@ -326,14 +326,14 @@ public class Hammurabi {
 
         if (new Random().nextDouble() <= 1.0) {
             System.out.print("You got a rat infestation\n");
-            this.grainsDestroyedByRats = rand.nextInt((30-10)+1);
+            this.grainsDestroyedByRats = rand.nextInt((30-10)*100);
             this.bushels -= this.grainsDestroyedByRats;
             System.out.println(this.bushels);
             } else {
             grainsDestroyedByRats = 0;
             return this.bushels;
         }
-        return this.bushels-this.grainsDestroyedByRats;
+        return this.bushels;
     }
 
 }
