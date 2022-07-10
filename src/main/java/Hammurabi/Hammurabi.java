@@ -183,7 +183,7 @@ public class Hammurabi {
             System.out.println(newMessage);
             input = getNumber(message);
         }
-        this.bushels += this.harvest * this.acresOwned;
+        this.bushels += this.harvest * input;
         this.bushels -= input;
         System.out.println(this.bushels);
         return input;
@@ -324,11 +324,11 @@ public class Hammurabi {
 //        When this happens, rats will eat somewhere between 10% and 30% of your grain.
 //        Return the amount of grain eaten by rats (possibly zero).
 
-        if (new Random().nextDouble() <= 1.0) {
+        if (new Random().nextDouble() <= 0.40) {
             System.out.print("You got a rat infestation\n");
             this.grainsDestroyedByRats = rand.nextInt((30-10)*100);
             this.bushels -= this.grainsDestroyedByRats;
-            System.out.println(this.bushels);
+
             } else {
             grainsDestroyedByRats = 0;
             return this.bushels;
