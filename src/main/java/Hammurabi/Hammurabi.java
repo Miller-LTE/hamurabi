@@ -262,13 +262,20 @@ public class Hammurabi {
         else{
             System.out.print("No people starved this year!");
             return 0;
+
         }
     }
     private boolean uprising(int population, int howManyPeopleStarved){
-        if (population == population / 0.45){
-            System.out.println("The population has started an uprising");
-            }
-        return true;
+//        if (population == population / 0.45){
+//            System.out.println("The population has started an uprising");
+//            }
+//        return true;
+        howManyPeopleStarved = population - (bushels / 20);
+        if(howManyPeopleStarved > 0.45 * population){
+            System.out.print("You have made " + howManyPeopleStarved + " starved this year and that is more than 45% of the population!" +
+                    " You are dismissed as the ruler.");
+            return true;
+        }
     }
     private int immigrants(int population, int acresOwned, int grainInStorage){
 ////        Nobody will come to the city if people are starving (so don't call this method).
