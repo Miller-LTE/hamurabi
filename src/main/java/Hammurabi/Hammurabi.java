@@ -240,20 +240,29 @@ public class Hammurabi {
     private int plagueDeaths(int population){
 //        boolean value = rand.nextInt((100 / 15)) == 0;
         if (new Random().nextDouble() <= 0.15){
-            population = population / 2; //Plague occurs and half the population dies
+//            population = population / 2; //Plague occurs and half the population dies
+            System.out.print("A horrible plague has occur!" + (population / 2) + "people died...");
+            return population / 2;
+        } else {
+            System.out.print("No plague this year!");
+            return 0; //Plague does not happen; population stays the same
         }
-        return population; //Plague does not happen; population stays the same
     }
-    private int starvationDeaths(int population, int bushelsFedToPeople){
-        //Each person needs 20 bushels of grain to survive. If you feed them more than this,
-        // they are happy, but the grain is still gone.
-        // You don't get any benefit from having happy subjects.
-        // Return the number of deaths from starvation (possibly zero).
-        int maxFeed = bushels / 20;
-        while (population > askHowMuchGrainToFeedPeople(maxFeed)){
-            population = population - ((bushels * 20) * (askHowMuchGrainToFeedPeople(bushelsFedToPeople)));
+    public int starvationDeaths(int population, int bushelsFedToPeople){
+//        int maxFeed = bushels / 20;
+//        while (population > askHowMuchGrainToFeedPeople(maxFeed)){
+//            population = population - ((bushels * 20) * (askHowMuchGrainToFeedPeople(bushelsFedToPeople)));
+//        }
+//        return population;
+        int numOfStarved = population - (bushelsFedToPeople / 20);
+        if( numOfStarved > 0) {
+            System.out.print("This year, we have" + numOfStarved + "People Starved...");
+            return numOfStarved;
         }
-        return population;
+        else{
+            System.out.print("No people starved this year!");
+            return 0;
+        }
     }
     private boolean uprising(int population, int howManyPeopleStarved){
         if (population == population / 0.45){
@@ -262,12 +271,22 @@ public class Hammurabi {
         return true;
     }
     private int immigrants(int population, int acresOwned, int grainInStorage){
-//        Nobody will come to the city if people are starving (so don't call this method).
-//        If everyone is well fed,
-//        compute how many people come to the city as:
-//        `(20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1`.
-            population = ((20 * acresOwned) + (bushels)) / (100 * population) + 1;
-        return population;
+////        Nobody will come to the city if people are starving (so don't call this method).
+////        If everyone is well-fed,
+////        compute how many people come to the city as:
+////        `(20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1`.
+//            population = ((20 * acresOwned) + (bushels)) / (100 * population) + 1;
+//        return population;
+        int numOfStarved = population - (grainInStorage / 20);
+        if(numOfStarved == 0) {
+            System.out.print("Nobody starved this year!");
+            return 0;
+        }
+        else{
+            int numOfImmigrants = (20 * acresOwned + bushels) / (100 * population) + 1;
+            System.out.print("This year " + numOfImmigrants + "came to our kingdom.");
+            return numOfImmigrants;
+        }
     }
 
     private int grainEatenByRats(int bushels){
