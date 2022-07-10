@@ -71,10 +71,6 @@ public class Hammurabi {
                 }
             }
 
-            //System.out.println("How much grain do you want to feed your people?");
-//            askHowMuchGrainToFeedPeople(bushels);
-
-            //System.out.println("How many acres of land do you want to plant?");
             askHowManyAcresToPlant(acresOwned, population, bushels);
 
             starvationDeaths(population);
@@ -91,7 +87,7 @@ public class Hammurabi {
 
             grainEatenByRats(bushels);
 
-            if(years==10){
+            if (years == 10) {
                 System.out.println("You win!");
                 break;
             }
@@ -105,21 +101,13 @@ public class Hammurabi {
                 "In the previous year " + immigrants + " people entered the kingdom.\n" +
                 "The population is now " + population + ".\n" +
                 "Harvesting was done at " + harvest + " bushels per acre.\n" +
-                "Rats destroyed " +  grainsDestroyedByRats + " bushels, leaving " + bushels + " bushels in storage.\n" +
+                "Rats destroyed " + grainsDestroyedByRats + " bushels, leaving " + bushels + " bushels in storage.\n" +
                 "The city owns " + acresOwned + " acres of land.\n" +
                 "Land is currently worth " + price + " bushels per acre.\n");
     }
 
 
     private int askHowManyAcresToBuy(int price, int bushels) {
-//        System.out.print("How many acres of land would you like to buy? ");
-//        int input = askForInput();
-//        if (enoughBushels(input) == true) {
-//            this.bushels -= this.price * input;
-//            this.acresOwned += input;
-//        }
-//        System.out.println(this.bushels);
-
         String message = "How many acres of land would you like to buy?";
         int maxAcres = bushels / price;
         int input = getNumber(message);
@@ -148,20 +136,12 @@ public class Hammurabi {
         this.acresOwned -= input;
         System.out.println(this.bushels);
         return input;
-//        if (input <= 0 || this.acresOwned <= input) {
-//            System.out.println("Does not work!"); //If you input # that is less than 0, it shall not work
-//        } else {
-//            this.bushels += this.price * input;
-//        }
-//        this.acresOwned -= input;
-//        System.out.println(this.bushels);
-//        return input;
     }
 
     private int askHowMuchGrainToFeedPeople(int bushels) {
         String message = "How much grain do you want to feed your people?";
         int input = getNumber(message);
-        while (input > population * 20 && this.bushels>input) {
+        while (input > population * 20 && this.bushels > input) {
             String newMessage = "You do not have enough bushels to feed everyone";
             System.out.println(newMessage);
             input = getNumber(message);
@@ -169,10 +149,6 @@ public class Hammurabi {
         this.bushels -= input;
         System.out.println(this.bushels);
         return input;
-//        int input = askForInput();
-//        this.bushels -= input;
-//        System.out.println(this.bushels);
-//        return input;
     }
 
     private int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
@@ -187,17 +163,6 @@ public class Hammurabi {
         this.bushels -= input;
         System.out.println(this.bushels);
         return input;
-//        int input = askForInput();
-//        if (input <= 0) {
-//            System.out.println("Try again");
-//        } else if (input > 10 * this.population) {
-//            System.out.println("You only have " + this.population + " to work.");
-//        } else {
-//            this.bushels += this.harvest * this.acresOwned;
-//            this.bushels -= input;
-//        }
-//        System.out.println(this.bushels);
-//        return input;
     }
 
     private int askForInput() {
@@ -212,28 +177,6 @@ public class Hammurabi {
         } while (input <= 0);
         return input;
     }
-
-//    private boolean enoughBushels(int input) {
-//        boolean isNotEnoughBushels = true;
-//        while (input > this.bushels) {
-//            System.out.println("Not enough bushels! Go lower!");
-//            isNotEnoughBushels = false;
-//            scanner.next();
-//        }
-//        return isNotEnoughBushels;
-//    }
-
-//    int getNumber(String message) {
-//        while (true) {
-//            System.out.print(message);
-//            try {
-//                return scanner.nextInt();
-//            }
-//            catch (InputMismatchException e) {
-//                System.out.println("\"" + scanner.next() + "\" isn't a number!");
-//            }
-//        }
-//    }
 
     int getNumber(String message) {
         while (true) {
@@ -253,9 +196,8 @@ public class Hammurabi {
     }
 
     private int plagueDeaths(int population) {
-//        boolean value = rand.nextInt((100 / 15)) == 0;
         if (new Random().nextDouble() <= 0.15) {
-//            population = population / 2; //Plague occurs and half the population dies
+//Plague occurs and half the population dies
             System.out.print("A horrible plague has occur! " + (population / 2) + " people died...\n");
             this.population = population / 2;
             return this.population;
@@ -266,11 +208,6 @@ public class Hammurabi {
     }
 
     public int starvationDeaths(int population) {
-//        int maxFeed = bushels / 20;
-//        while (population > askHowMuchGrainToFeedPeople(maxFeed)){
-//            population = population - ((bushels * 20) * (askHowMuchGrainToFeedPeople(bushelsFedToPeople)));
-//        }
-//        return population;
         int x = askHowMuchGrainToFeedPeople(bushels);
 
         int numberOfPeopleFed = (x / 20);
@@ -287,11 +224,6 @@ public class Hammurabi {
     }
 
     private boolean uprising(int population, int starved) {
-//        if (population == population / 0.45){
-//            System.out.println("The population has started an uprising");
-//            }
-//        return true;
-
         if (starved > 0.45 * population) {
             System.out.print("You have made " + starved + " starved this year and that is more than 45% of the population!" +
                     " You are dismissed as the ruler.");
@@ -301,12 +233,6 @@ public class Hammurabi {
     }
 
     private int immigrants(int population, int acresOwned, int bushels) {
-////        Nobody will come to the city if people are starving (so don't call this method).
-////        If everyone is well-fed,
-////        compute how many people come to the city as:
-////        `(20 * _number of acres you have_ + _amount of grain you have in storage_) / (100 * _population_) + 1`.
-//            population = ((20 * acresOwned) + (bushels)) / (100 * population) + 1;
-//        return population;
         int numOfStarved = population - (bushels / 20);
         if (numOfStarved == 0) {
             System.out.print("Nobody starved this year!\n");
@@ -320,16 +246,12 @@ public class Hammurabi {
     }
 
     private int grainEatenByRats(int bushels) {
-//        > There is a 40% chance that you will have a rat infestation.
-//        When this happens, rats will eat somewhere between 10% and 30% of your grain.
-//        Return the amount of grain eaten by rats (possibly zero).
-
         if (new Random().nextDouble() <= 0.40) {
             System.out.print("You got a rat infestation\n");
-            this.grainsDestroyedByRats = rand.nextInt(20)+10;
+            this.grainsDestroyedByRats = rand.nextInt(20) + 10;
             this.bushels -= this.grainsDestroyedByRats;
 
-            } else {
+        } else {
             grainsDestroyedByRats = 0;
             return this.bushels;
         }
