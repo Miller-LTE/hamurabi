@@ -161,7 +161,7 @@ public class Hammurabi {
     private int askHowMuchGrainToFeedPeople(int bushels) {
         String message = "How much grain do you want to feed your people?";
         int input = getNumber(message);
-        while (input > population * 20) {
+        while (input > population * 20 && this.bushels>input) {
             String newMessage = "You do not have enough bushels to feed everyone";
             System.out.println(newMessage);
             input = getNumber(message);
@@ -326,7 +326,7 @@ public class Hammurabi {
 
         if (new Random().nextDouble() <= 0.40) {
             System.out.print("You got a rat infestation\n");
-            this.grainsDestroyedByRats = rand.nextInt((30-10)*100);
+            this.grainsDestroyedByRats = rand.nextInt(20)+10;
             this.bushels -= this.grainsDestroyedByRats;
 
             } else {
