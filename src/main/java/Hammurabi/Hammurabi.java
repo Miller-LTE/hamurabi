@@ -88,13 +88,20 @@ public class Hammurabi {
             grainEatenByRats(bushels);
 
             if (years == 10) {
-                System.out.println("You win!");
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("-----------------------Congratulations for beating the game!----------------------");
+                System.out.println("---------------------------------You Win!!!---------------------------------------");
+                System.out.println("-------------------------Thank you for playing the game!--------------------------");
+                System.out.println("-------------------------------Created by Miller LTE------------------------------");
+                System.out.println("------------------------Lloyd Perez, Troy Le, Eugene Shin-------------------------");
+                System.out.println("=---------------------------------------------------------------------------------");
+                printFinalSummary();
                 break;
             }
         }
     }
 
-    private void printSummary() {
+    public void printSummary() {
         System.out.println("O great Harambe!\n" +
                 "You are in year " + years + " of your ten year rule.\n" +
                 "In the previous year " + starved + " people starved to death.\n" +
@@ -105,9 +112,16 @@ public class Hammurabi {
                 "The city owns " + acresOwned + " acres of land.\n" +
                 "Land is currently worth " + price + " bushels per acre.\n");
     }
+    public void printFinalSummary() {
+        System.out.println("Harambe! These are the results of your ruling.\n" +
+                "You made it through " + years + " years of ruling.\n" +
+                "The population is now " + population + ".\n" +
+                "Harvesting was done at " + harvest + " bushels per acre.\n" +
+                "The city owns " + acresOwned + " acres of land.\n");
+    }
 
 
-    private int askHowManyAcresToBuy(int price, int bushels) {
+    public int askHowManyAcresToBuy(int price, int bushels) {
         String message = "How many acres of land would you like to buy?";
         int maxAcres = bushels / price;
         int input = getNumber(message);
@@ -121,7 +135,7 @@ public class Hammurabi {
         return input;
     }
 
-    private int askHowManyAcresToSell(int acres) {
+    public int askHowManyAcresToSell(int acres) {
 
         //System.out.print("How many acres of land would you like to sell? ");
         String message = "How many acres of land would you like to sell?";
@@ -138,7 +152,7 @@ public class Hammurabi {
         return input;
     }
 
-    private int askHowMuchGrainToFeedPeople(int bushels) {
+    public int askHowMuchGrainToFeedPeople(int bushels) {
         String message = "How much grain do you want to feed your people?";
         int input = getNumber(message);
         while (input > population * 20 && this.bushels > input) {
@@ -151,7 +165,7 @@ public class Hammurabi {
         return input;
     }
 
-    private int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+    public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
         String message = "How many acres of land do you want to plant?";
         int input = getNumber(message);
         while (input < 0 || input > 10 * population) { //each person can only plant 10 acres
@@ -165,7 +179,7 @@ public class Hammurabi {
         return input;
     }
 
-    private int askForInput() {
+    public int askForInput() {
         int input;
         do {
             System.out.println("Enter a positive number.");
@@ -195,7 +209,7 @@ public class Hammurabi {
         }
     }
 
-    private int plagueDeaths(int population) {
+    public int plagueDeaths(int population) {
         if (new Random().nextDouble() <= 0.15) {
 //Plague occurs and half the population dies
             System.out.print("A horrible plague has occur! " + (population / 2) + " people died...\n");
@@ -223,7 +237,7 @@ public class Hammurabi {
         }
     }
 
-    private boolean uprising(int population, int starved) {
+    public boolean uprising(int population, int starved) {
         if (starved > 0.45 * population) {
             System.out.print("You have made " + starved + " starved this year and that is more than 45% of the population!" +
                     " You are dismissed as the ruler.");
@@ -232,7 +246,7 @@ public class Hammurabi {
         return false;
     }
 
-    private int immigrants(int population, int acresOwned, int bushels) {
+    public int immigrants(int population, int acresOwned, int bushels) {
         int numOfStarved = population - (bushels / 20);
         if (numOfStarved == 0) {
             System.out.print("Nobody starved this year!\n");
@@ -245,7 +259,7 @@ public class Hammurabi {
         }
     }
 
-    private int grainEatenByRats(int bushels) {
+    public int grainEatenByRats(int bushels) {
         if (new Random().nextDouble() <= 0.40) {
             System.out.print("You got a rat infestation\n");
             this.grainsDestroyedByRats = rand.nextInt(20) + 10;
